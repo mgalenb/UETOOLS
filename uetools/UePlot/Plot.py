@@ -18,11 +18,26 @@ class Plot:
                 zm = self.get("zm")
             except:
                 return
-        print('PLOTINIT', rm.shape)
+        print('PLOTINIT1', rm.shape)
         # TODO: figure out why createpolycollection bogs down Datbase?
+        print('PLOTINIT2', rm.shape)
+        try:
+            print('NX NY:', self.nx, self.ny)
+        except:
+            print('NX NY NOT SET YET')
         if self.database is not True:
             self.createvertices(rm, zm)
+        print('PLOTINIT3', rm.shape)
+        try:
+            print('NX NY:', self.nx, self.ny)
+        except:
+            print('NX NY NOT SET YET')
         super().__init__(*args, **kwargs)
+        print('PLOTINIT4', rm.shape)
+        try:
+            print('NX NY:', self.nx, self.ny)
+        except:
+            print('NX NY NOT SET YET')
         return
 
     def createvertices(self, rm, zm):
@@ -40,6 +55,11 @@ class Plot:
                 rm, -zm + self.disp, setparams=False
             )
 
+        print('CV2', rm.shape)
+        try:
+            print('NX NY:', self.nx, self.ny)
+        except:
+            print('NX NY NOT SET YET')
         # CREATE NORMAL VECTOR IN LOCAL CELL COORDINATES
         nodes = zeros((self.get("nx") + 2, self.get("ny") + 2, 5, 2))
         nodes[:, :, :, 0] = self.get("rm")
@@ -57,6 +77,11 @@ class Plot:
         self.sxmid[0] = (nodes[3] + nodes[1]) / 2  # Left face center
         self.sxmid[1] = (nodes[4] + nodes[2]) / 2  # Right face center
 
+        print('CV3', rm.shape)
+        try:
+            print('NX NY:', self.nx, self.ny)
+        except:
+            print('NX NY NOT SET YET')
         # Find vectors of east faces
         eastface = zeros((3, self.get("nx") + 2, self.get("ny") + 2))
         eastface[:-1] = nodes[4] - nodes[2]
@@ -77,6 +102,11 @@ class Plot:
         for i in range(2):
             self.eastnormaln[i] = eastnormal[i] / (sum(eastnormal**2, 
                 axis=0) ** 0.5 + 1e-20)
+        print('CV4', rm.shape)
+        try:
+            print('NX NY:', self.nx, self.ny)
+        except:
+            print('NX NY NOT SET YET')
 
     def newplot(self, **kwargs):
         """ Creates a figure for 'dump' plots """
@@ -171,6 +201,11 @@ class Plot:
             self.itboundz = self.get("zm")[1, :, 1]
             self.otboundr = self.get("rm")[-2, :, 2]
             self.otboundz = self.get("zm")[-2, :, 2]
+            print('CPC3', rm.shape)
+            try:
+                print('NX NY:', self.nx, self.ny)
+            except:
+                print('NX NY NOT SET YET')
 
         vertices = []
         # Loop through all cells, omitting guard cells
