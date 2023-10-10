@@ -276,6 +276,11 @@ class Case(Misc, Save, PostProcessors, ConvergeStep, ADAS,
             self.iysptrx = self.get('iysptrx')
         self.nx = self.get('nx')
         self.ny = self.get('ny')
+        print('CASE1')
+        try:
+            print('NX NY:', self.nx, self.ny)
+        except:
+            print('NX NY NOT SET YET')
         self.ixmp = self.get('ixmp')
 #        self.ixm1 = self.get('ixm1')
 #        self.ixp1 = self.get('ixp1')

@@ -5,6 +5,10 @@ from uetools.UePlot import Plot
 class Caseplot(Plot):
     def __init__(self, *args, **kwargs):
         print('CP INIT', self.get('rm').shape)
+        try:
+            print(self.nx, self.ny)
+        except:
+            print('NX NY NOT SET YET')
         self.createvertices(self.get('rm'), self.get('zm')) 
         # TODO: initialize parent properly instead
         # of explicit call - how??
@@ -12,8 +16,16 @@ class Caseplot(Plot):
         self.otdistance = self.get("yyrb")
         self.itdistance = self.get("yylb")
         print('CP1')
+        try:
+            print('NX NY:', self.nx, self.ny)
+        except:
+            print('NX NY NOT SET YET')
         super().__init__(*args, **kwargs)
         print('CP2')
+        try:
+            print('NX NY:', self.nx, self.ny)
+        except:
+            print('NX NY NOT SET YET')
         return
 
     # TODO: implement profile plots

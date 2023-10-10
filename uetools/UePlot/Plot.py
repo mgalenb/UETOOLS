@@ -135,8 +135,17 @@ class Plot:
 
         if setparams is True:
             print('CPC1', rm.shape)
+            try:
+                print('NX NY:', self.nx, self.ny)
+            except:
+                print('NX NY NOT SET YET')
             self.nx = rm.shape[0] - 2
             self.ny = rm.shape[1] - 2
+            print('CPC2', rm.shape)
+            try:
+                print('NX NY:', self.nx, self.ny)
+            except:
+                print('NX NY NOT SET YET')
             ixpt1 = self.get("ixpt1")[0]
             ixpt2 = self.get("ixpt2")[0]
             iysptrx = self.get("iysptrx")
