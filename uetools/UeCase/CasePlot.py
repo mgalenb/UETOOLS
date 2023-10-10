@@ -4,13 +4,16 @@ from uetools.UePlot import Plot
 
 class Caseplot(Plot):
     def __init__(self, *args, **kwargs):
+        print('CP INIT', self.get('rm').shape)
         self.createvertices(self.get('rm'), self.get('zm')) 
         # TODO: initialize parent properly instead
         # of explicit call - how??
         # Calculate distances along targets
         self.otdistance = self.get("yyrb")
         self.itdistance = self.get("yylb")
+        print('CP1')
         super().__init__(*args, **kwargs)
+        print('CP2')
         return
 
     # TODO: implement profile plots

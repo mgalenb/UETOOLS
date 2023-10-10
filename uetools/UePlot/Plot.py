@@ -12,12 +12,13 @@ class Plot:
         """
         # Intialize empty
         if (rm is None) or (zm is None):
+            print('PLOTINIT NO RM')
             try:
                 rm = self.get("rm")
                 zm = self.get("zm")
             except:
                 return
-
+        print('PLOTINIT', rm.shape)
         # TODO: figure out why createpolycollection bogs down Datbase?
         if self.database is not True:
             self.createvertices(rm, zm)
@@ -27,6 +28,7 @@ class Plot:
     def createvertices(self, rm, zm):
         from numpy import zeros, transpose, cross, sum
         # CREATE POLYGON COLLECTIONS TO USE
+        print('CV1', rm.shape)
         self.vertices = self.createpolycollection(rm, zm)
         if self.get("geometry")[0].strip().lower().decode("UTF-8") == "uppersn":
             self.disp = 0
@@ -132,6 +134,7 @@ class Plot:
         from numpy import concatenate
 
         if setparams is True:
+            print('CPC1', rm.shape)
             self.nx = rm.shape[0] - 2
             self.ny = rm.shape[1] - 2
             ixpt1 = self.get("ixpt1")[0]
@@ -287,6 +290,8 @@ class Plot:
             else:
                 vertices = deepcopy(self.vertices)
         else:  # Create collection from data
+            print('MP NEW POLYCOLLECTION')
+            print(rm.shape)
             vertices = self.createpolycollection(rm, zm)
         if grid is False:
             vertices.set_linewidths(1)
@@ -300,6 +305,7 @@ class Plot:
             vertices.set_linewidths(linewidth)
         else:
             vertices.set_cmap(cmap)
+            print('MP1', self.nx, self.ny)
             vertices.set_array(z[1:-1, 1:-1].reshape(self.nx * self.ny))
             vertices.set_clim(*zrange)
             if log is True:
